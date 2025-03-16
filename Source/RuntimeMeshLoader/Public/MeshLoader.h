@@ -71,7 +71,7 @@ UCLASS()
 class RUNTIMEMESHLOADER_API UMeshLoader : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-
+public:
 	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
 	static FFinalReturnData LoadMeshFromFile(FString FilePath, EPathType type = EPathType::Absolute);
 
