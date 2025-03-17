@@ -76,6 +76,9 @@ public:
 	static FFinalReturnData LoadMeshFromFile(FString FilePath, EPathType type = EPathType::Absolute);
 
 	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
+	static FFinalReturnData LoadMeshFromBinary(const TArray<uint8>& InBinary);
+
+	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
 	static bool DirectoryExists(FString DirectoryPath);
 
 	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
@@ -86,4 +89,7 @@ public:
 
 	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
 	static UTexture2D* LoadTexture2DFromFile(const FString& FullFilePath, bool& IsValid, int32& Width, int32& Height);
+
+	UFUNCTION(BlueprintCallable,Category="RuntimeMeshLoader")
+	static UTexture2D* LoadTexture2DFromBinary(const TArray<uint8>& InBinary, bool& IsValid, int32& Width, int32& Height);
 };
