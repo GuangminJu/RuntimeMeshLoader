@@ -231,7 +231,12 @@ UTexture2D* UMeshLoader::LoadTexture2DFromBinary(const TArray<uint8>& InBinary, 
 	IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(
 		FName("ImageWrapper"));
 
-	TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+	EImageFormat ImageFormat = ImageWrapperModule.DetectImageFormat(InBinary.GetData(), InBinary.Num());
+	if (ImageFormat == EImageFormat::Invalid)
+	{
+		ImageFormat = EImageFormat::PNG;
+	}
+	TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule.CreateImageWrapper(ImageFormat);
 
 	//Create T2D!
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(InBinary.GetData(), InBinary.Num()))
